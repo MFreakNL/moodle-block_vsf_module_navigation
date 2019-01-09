@@ -220,13 +220,8 @@ class block_vsf_module_navigation extends block_base {
             $template->hasprev = false;
         }
 
-        $template->checkboxright = false;
-        $template->checkboxleft = true;
-        if (get_config('block_vsf_module_navigation', 'completionchecklocation') == 2) {
-            $template->checkboxright = true;
-            $template->checkboxleft = false;
-        }
-
+        $template->checkboxright = true;
+        $template->checkboxleft = false;
         $template->circlechecks = true;
         $template->checkchecks = false;
         if (get_config('block_vsf_module_navigation', 'completionchecktype') == 2) {
@@ -369,6 +364,9 @@ class block_vsf_module_navigation extends block_base {
         if ($intab) {
             $template->inactivity = true;
         }
+
+        // Check if indend
+
         $template->coursename = $course->fullname;
         $template->config = $this->config;
         $renderer = $this->page->get_renderer('block_vsf_module_navigation', 'nav');

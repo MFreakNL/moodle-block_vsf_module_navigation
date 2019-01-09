@@ -101,17 +101,6 @@ if ($ADMIN->fulltree) {
     ];
     $settings->add(new admin_setting_configselect($name, $title, $description, $default, $choices));
 
-    // Option: Location of completion check.
-    $name = 'block_vsf_module_navigation/completionchecklocation';
-    $title = get_string('completionchecklocation', 'block_vsf_module_navigation');
-    $description = get_string('completionchecklocation_desc', 'block_vsf_module_navigation');
-    $default = 1;
-    $choices = [
-        1 => get_string('left', 'block_vsf_module_navigation'),
-        2 => get_string('right', 'block_vsf_module_navigation'),
-    ];
-    $settings->add(new admin_setting_configselect($name, $title, $description, $default, $choices));
-
     $settings->add(new admin_setting_configselect('block_vsf_module_navigation/display_stealth',
         get_string('display_stealth', 'block_vsf_module_navigation'),
         get_string('display_stealth_desc', 'block_vsf_module_navigation'),
