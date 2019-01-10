@@ -297,6 +297,10 @@ class block_vsf_module_navigation extends block_base {
                         continue;
                     }
 
+                    if ($module->is_stealth()) {
+                        continue;
+                    }
+
                     $thismod = new stdClass();
 
                     if ($inactivity) {
