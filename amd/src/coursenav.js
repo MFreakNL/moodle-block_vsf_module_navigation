@@ -21,6 +21,15 @@ define(['jquery'], function () {
         },
 
         /**
+         * Open accordion if available.
+         * - Show the current section only.
+         * @param $li
+         */
+        open_accordion: function ($li) {
+            $li.closest('.section-collapse').addClass('show').attr('id');
+        },
+
+        /**
          * Open or close a group.
          */
         toggle_on_click_groups: function () {
@@ -30,6 +39,9 @@ define(['jquery'], function () {
 
                 if ($li.hasClass('parent') || $li.hasClass('child')) {
                     var groupint = $li.data('group');
+
+                    // Open accordion.
+                    module.open_accordion($li);
 
                     // Open all the items.
                     module.toggle_group(groupint);
@@ -56,6 +68,9 @@ define(['jquery'], function () {
             var $li = $('.block_vsf_module_navigation li a.active').parent();
             if ($li.hasClass('parent') || $li.hasClass('child')) {
                 var groupint = $li.data('group');
+
+                // Open accordion.
+                module.open_accordion($li);
 
                 // Open all the items.
                 this.toggle_group(groupint);
