@@ -143,7 +143,6 @@ class block_vsf_module_navigation extends block_base {
         } else {
             $sections = $format->get_sections();
         }
-
         if (empty($sections)) {
             return $this->content;
         }
@@ -167,6 +166,7 @@ class block_vsf_module_navigation extends block_base {
 
         $thiscontext = context::instance_by_id($this->page->context->id);
 
+        // TODO This old code needs some cleaning.
         $inactivity = false;
         $myactivityid = 0;
 
@@ -297,18 +297,25 @@ class block_vsf_module_navigation extends block_base {
                         continue;
                     }
 
-                    if ($module->is_stealth()) {
+                    $thismod = new stdClass();
+
+                    if (!empty($PAGE->cm->id) &&
+                        $PAGE->cm->id == $module->id) {
+                        // Check if is active.
+                        $thissection->selected = true;
+
+                        if (!$module->is_stealth()) {
+                            $thismod->active = 'active';
+                        } else if ($module->is_stealth()) {
+                            // Make sure the section is still marked as active.
+                            continue;
+                        }
+
+                    } else if ($module->is_stealth()) {
+                        // Don't show in the menu.
                         continue;
                     }
 
-                    $thismod = new stdClass();
-
-                    if ($inactivity) {
-                        if ($myactivityid == $module->id) {
-                            $thissection->selected = true;
-                            $thismod->active = 'active';
-                        }
-                    }
                     $key = 'cm_' . $module->id;
                     $thismod->time = isset($this->config->$key) ? $this->config->$key : 0;
                     $thismod->name = format_string($module->name, true, ['context' => $context]);
@@ -369,8 +376,7 @@ class block_vsf_module_navigation extends block_base {
             $template->inactivity = true;
         }
 
-        // Check if indend
-
+        // Check if indend.
         $template->coursename = $course->fullname;
         $template->config = $this->config;
         $renderer = $this->page->get_renderer('block_vsf_module_navigation', 'nav');
