@@ -60,6 +60,3 @@ $string['config_display_secionname'] = 'Toon sectie naam';
 $string['config_heading'] = 'Kop naam.';
 $string['config_heading_help'] = 'Wanneer leeg wordt de cursusnaam getoond boven in de kop.';
 $string['config_time'] = 'Activiteit tijdsindicatie in minuten';
-// New 2019.
-$string['display_stealth'] = 'Verborgen activiteiten';
-$string['display_stealth_desc'] = 'Wil je verborgen activiteiten verbergen in het menu?';

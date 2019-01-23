@@ -148,7 +148,6 @@ class block_vsf_module_navigation extends block_base {
         }
 
         $PAGE->requires->js_call_amd('block_vsf_module_navigation/coursenav', 'init');
-        $hidestealth = get_config('block_vsf_module_navigation', 'display_stealth');
 
         $context = context_course::instance($course->id);
 
@@ -293,7 +292,7 @@ class block_vsf_module_navigation extends block_base {
                         continue;
                     }
 
-                    if (empty($module->visible) && $hidestealth) {
+                    if (empty($module->visible)) {
                         continue;
                     }
 

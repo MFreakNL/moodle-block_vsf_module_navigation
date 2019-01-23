@@ -100,12 +100,4 @@ if ($ADMIN->fulltree) {
         2 => get_string('check', 'block_vsf_module_navigation'),
     ];
     $settings->add(new admin_setting_configselect($name, $title, $description, $default, $choices));
-
-    $settings->add(new admin_setting_configselect('block_vsf_module_navigation/display_stealth',
-        get_string('display_stealth', 'block_vsf_module_navigation'),
-        get_string('display_stealth_desc', 'block_vsf_module_navigation'),
-        2, [
-            1 => new lang_string('no'), // No.
-            2 => new lang_string('yes')   // Yes.
-        ]));
 }

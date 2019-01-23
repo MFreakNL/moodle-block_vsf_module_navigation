@@ -60,6 +60,3 @@ $string['config_display_secionname'] = 'Display section name';
 $string['config_heading'] = 'The heading name.';
 $string['config_heading_help'] = 'The heading name of the block, if empty course name will be displayed.';
 $string['config_time'] = 'Activity time indication in minutes';
-// New 2019.
-$string['display_stealth'] = 'Stealth activities';
-$string['display_stealth_desc'] = 'Should we hide stealth activities?';
