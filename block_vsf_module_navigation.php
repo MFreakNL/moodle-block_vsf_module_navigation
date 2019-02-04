@@ -364,7 +364,7 @@ class block_vsf_module_navigation extends block_base {
                 $prevurl = new moodle_url('/course/view.php', ['id' => $course->id, 'section' => $pn->prev]);
                 $template->prevurl = $prevurl->out(false);
 
-                $currurl = new moodle_url('/course/view.php', ['id' => $course->id, 'section' => $thissection->number]);
+                $currurl = new moodle_url('/course/view.php', ['id' => $course->id]);
                 $template->currurl = $currurl->out(false);
 
                 $nexturl = new moodle_url('/course/view.php', ['id' => $course->id, 'section' => $pn->next]);
