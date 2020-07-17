@@ -22,29 +22,25 @@
 /**
  * Grunt configuration
  */
-
+"use strict";
 
 module.exports = function(grunt) {
+    // Running local with
+    // First time npm install
+    // nvm use 8.9
+    // grunt --moodledir=/Users/mail/OPENSOURCE/moodle-370/
 
     // Import modules.
-    var path = require('path');
+    require("grunt-load-gruntfile")(grunt);
 
-    // PHP strings for exec task.
-    var moodleroot = path.dirname(path.dirname(__dirname)),
-        configfile = '',
-        decachephp = '',
-        dirrootopt = grunt.option('dirroot') || process.env.MOODLE_DIR || '';
+    var MOODLE_DIR = grunt.option('moodledir') || '../../';
+    grunt.loadGruntfile(MOODLE_DIR + "Gruntfile.js");
 
-    // Allow user to explicitly define Moodle root dir.
-    if ('' !== dirrootopt) {
-        moodleroot = path.resolve(dirrootopt);
-    }
-
-    configfile = path.join(moodleroot, 'config.php');
-
-    decachephp += 'define(\'CLI_SCRIPT\', true);';
-    decachephp += 'require(\'' + configfile + '\');';
-    decachephp += 'theme_reset_all_caches();';
+    //Load all grunt tasks.
+    grunt.loadNpmTasks("grunt-contrib-less");
+    grunt.loadNpmTasks("grunt-contrib-watch");
+    grunt.loadNpmTasks("grunt-contrib-clean");
+    grunt.loadNpmTasks("grunt-fixindent");
 
     grunt.initConfig({
         less: {
@@ -57,16 +53,17 @@ module.exports = function(grunt) {
                 dest: 'styles.css'
             }
         },
-        // exec: {
-        //     decache: {
-        //        // cmd: 'php -r "' + decachephp + '"',
-        //         callback: function(error) {
-        //             if (!error) {
-        //                 grunt.log.writeln("Moodle theme cache reset.");
-        //             }
-        //         }
-        //     }
-        // },
+        eslint: {
+            amd: {src: "amd/src"}
+        },
+        uglify: {
+            amd: {
+                files: {
+                    "amd/build/coursenav.min.js": ["amd/src/coursenav.js"],
+                },
+                options: {report: 'none'}
+            }
+        },
         watch: {
             // Watch for any changes to less files and compile.
             files: ["less/*.less"],
@@ -74,6 +71,18 @@ module.exports = function(grunt) {
             options: {
                 spawn: false,
                 livereload: true
+            }
+        },
+        fixindent: {
+            stylesheets: {
+                src: [
+                    'styles.css'
+                ],
+                dest: 'styles.css',
+                options: {
+                    style: 'space',
+                    size: 4
+                }
             }
         },
         csslint: {
@@ -92,15 +101,6 @@ module.exports = function(grunt) {
         }
     });
 
-    // Load contrib tasks.
-    grunt.loadNpmTasks("grunt-contrib-less");
-    grunt.loadNpmTasks("grunt-contrib-watch");
-    grunt.loadNpmTasks("grunt-text-replace");
-    grunt.loadNpmTasks("grunt-exec");
-    grunt.loadNpmTasks('grunt-contrib-csslint');
-
     // Register tasks.
-    grunt.registerTask("default", ["watch"]);
-  //  grunt.registerTask("decache", ["exec:decache"]);
-    grunt.registerTask("compile", ["less"]);
+    grunt.registerTask("default", ["less", "fixindent", "eslint", "uglify"]);
 };
