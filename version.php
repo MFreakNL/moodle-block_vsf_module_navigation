@@ -23,8 +23,8 @@
  */
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component  = 'block_vsf_module_navigation';
-$plugin->release    = '3.9.0';
-$plugin->version    = 2020050901;
-$plugin->requires   = 2015102300; // Moodle 3.0 and above.
-$plugin->maturity   = MATURITY_STABLE;
+$plugin->component = 'block_vsf_module_navigation';
+$plugin->release = '3.10.0';
+$plugin->version = 2020050901;
+$plugin->requires = 2015102300; // Moodle 3.0 and above.
+$plugin->maturity = MATURITY_STABLE;

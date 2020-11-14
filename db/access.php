@@ -23,18 +23,18 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$capabilities = array(
+$capabilities = [
 
-    'block/vsf_module_navigation:addinstance' => array(
+    'block/vsf_module_navigation:addinstance' => [
         'riskbitmask' => RISK_SPAM | RISK_XSS,
 
         'captype' => 'write',
         'contextlevel' => CONTEXT_BLOCK,
-        'archetypes' => array(
+        'archetypes' => [
             'editingteacher' => CAP_ALLOW,
-            'manager' => CAP_ALLOW
-        ),
+            'manager' => CAP_ALLOW,
+        ],
 
-        'clonepermissionsfrom' => 'moodle/site:manageblocks'
-    ),
-);
+        'clonepermissionsfrom' => 'moodle/site:manageblocks',
+    ],
+];
