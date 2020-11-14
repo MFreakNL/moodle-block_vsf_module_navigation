@@ -34,6 +34,7 @@ Types of changes
 
 ##### Added
 - Update version number, no issues found Moodle 3.10.
+- Minimal PHP version 7.2
 
 ##### Removed
 - Remove `.eslintrc` `Gruntfile.js` and `packages.json` from the project causes Travis issues.
@@ -44,7 +45,6 @@ Types of changes
 - Update version number
 - Update Grunt build tools
 - jQuery not working anymore in coursenav.js
-
 
 ## Version 3.8 (2019.10.28)
 
