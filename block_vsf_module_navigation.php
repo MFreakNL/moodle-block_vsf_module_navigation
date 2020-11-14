@@ -84,9 +84,12 @@ class block_vsf_module_navigation extends block_base {
      * Populate this block's content object
      *
      * @return stdClass block content info
+     * @throws coding_exception
+     * @throws dml_exception
+     * @throws moodle_exception
      */
     public function get_content() {
-        global $DB, $OUTPUT, $PAGE;
+        global $DB;
         if (!is_null($this->content)) {
             return $this->content;
         }
@@ -102,12 +105,12 @@ class block_vsf_module_navigation extends block_base {
             return $this->content;
         }
 
-        if ($PAGE->pagelayout == 'admin') {
+        if ($this->page->pagelayout == 'admin') {
             return $this->content;
         }
 
         if (get_config('block_vsf_module_navigation', 'modulepageonly') == 2) {
-            if ($PAGE->pagelayout == 'course') {
+            if ($this->page->pagelayout == 'course') {
                 if ($this->instance->pagetypepattern != '*') {
                     $coursecontext = context_course::instance($this->page->course->id);
                     if (has_capability('block/vsf_module_navigation:addinstance', $coursecontext)) {
@@ -147,7 +150,7 @@ class block_vsf_module_navigation extends block_base {
             return $this->content;
         }
 
-        $PAGE->requires->js_call_amd('block_vsf_module_navigation/coursenav', 'init');
+        $this->page->requires->js_call_amd('block_vsf_module_navigation/coursenav', 'init');
 
         $context = context_course::instance($course->id);
 
@@ -298,8 +301,8 @@ class block_vsf_module_navigation extends block_base {
 
                     $thismod = new stdClass();
 
-                    if (!empty($PAGE->cm->id) &&
-                        $PAGE->cm->id == $module->id) {
+                    if (!empty($this->page->cm->id) &&
+                        $this->page->cm->id == $module->id) {
                         // Check if is active.
                         $thissection->selected = true;
 

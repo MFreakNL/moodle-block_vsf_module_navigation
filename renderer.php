@@ -24,6 +24,15 @@
 defined('MOODLE_INTERNAL') || die();
 
 class block_vsf_module_navigation_nav_renderer extends plugin_renderer_base {
+
+    /**
+     * render_nav
+     *
+     * @param $template
+     *
+     * @return bool|string
+     * @throws moodle_exception
+     */
     public function render_nav($template) {
         if (isset($template->config->onesection) && ($template->config->onesection == 1)) {
             return $this->render_from_template('block_vsf_module_navigation/coursenav_onesection', $template);
@@ -31,6 +40,4 @@ class block_vsf_module_navigation_nav_renderer extends plugin_renderer_base {
             return $this->render_from_template('block_vsf_module_navigation/coursenav', $template);
         }
     }
-
-
 }

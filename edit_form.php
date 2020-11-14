@@ -87,7 +87,6 @@ class block_vsf_module_navigation_edit_form extends block_edit_form {
         $sectionstrack = [];
         foreach ($modinfo->instances as $module => $instances) {
 
-
             foreach ($instances as $index => $cm) {
 
                 if (!isset($sectionstrack[$cm->sectionnum])) {

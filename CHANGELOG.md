@@ -8,10 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 // Example
 
 // Plugin release number corresponds to the lasest tested Moodle version in which the plugin has been tested.
->release = '3.5.7'; // [3.5.7]
+->release = '3.5.7'; // [3.5.7]
 
 // Plugin version number corresponds to the latest plugin version.
->version = 2019010100; // 2019-01-01
+->version = 2019010100; // 2019-01-01
 ```
 
 # How do I make a good changelog?
@@ -30,9 +30,17 @@ Types of changes
 * **Fixed** for any bug fixes.
 * **Security** in case of vulnerabilities.
 
+## Version 3.10 (2020.11.14)
+
+##### Added
+- Update version number, no issues found Moodle 3.10.
+
+##### Removed
+- Remove `.eslintrc` `Gruntfile.js` and `packages.json` from the project causes Travis issues.
+
 ## Version 3.9 (2020.05.09)
 
-### Fixed
+##### Fixed
 - Update version number
 - Update Grunt build tools
 - jQuery not working anymore in coursenav.js
@@ -40,7 +48,7 @@ Types of changes
 
 ## Version 3.8 (2019.10.28)
 
-### Added
+##### Added
 - Update version number
 - Convert changelog new structure
 
